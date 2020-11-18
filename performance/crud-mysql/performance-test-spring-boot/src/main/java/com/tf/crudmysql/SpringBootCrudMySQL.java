@@ -30,7 +30,7 @@ import lombok.Setter;
 @RestController
 @EnableTransactionManagement
 @SpringBootApplication
-public class CrudMySQL {
+public class SpringBootCrudMySQL {
 	@Setter
 	@Getter
 	@Entity
@@ -45,7 +45,7 @@ public class CrudMySQL {
 
 	@PostMapping("/") ResponseEntity<User> post(@RequestBody User user) {
 		this.userRepository.save(user);
-		return new ResponseEntity<CrudMySQL.User>(user, HttpStatus.CREATED);
+		return new ResponseEntity<SpringBootCrudMySQL.User>(user, HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/{id}") ResponseEntity<Optional<User>> get(@PathVariable("id") Long id) {
@@ -64,9 +64,9 @@ public class CrudMySQL {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(CrudMySQL.class, args);
+		SpringApplication.run(SpringBootCrudMySQL.class, args);
 	}
 }
 
-interface UserRepository extends CrudRepository<CrudMySQL.User, Long> {
+interface UserRepository extends CrudRepository<SpringBootCrudMySQL.User, Long> {
 }
