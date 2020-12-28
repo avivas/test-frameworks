@@ -17,33 +17,23 @@ import io.vertx.sqlclient.Tuple;
 
 public class VertxCrudMySQL extends AbstractVerticle {
 	private static MySQLPool client;
-
 	public static void main(String[] args) {
 		MySQLConnectOptions connectOptions = new MySQLConnectOptions().setPort(23306).setHost("127.0.0.1").setDatabase("crud").setUser("user").setPassword("password");
 		PoolOptions poolOptions = new PoolOptions().setMaxSize(100);
 		client = MySQLPool.pool(connectOptions, poolOptions);
-		
-		DeploymentOptions deploymentOptions = new DeploymentOptions();
-        deploymentOptions.setInstances(12);
-		Vertx vertx = Vertx.vertx();
-		vertx.deployVerticle(VertxCrudMySQL.class,deploymentOptions);
+		DeploymentOptions deploymentOptions = new DeploymentOptions().setInstances(12);
+		Vertx.vertx().deployVerticle(VertxCrudMySQL.class,deploymentOptions);
 	}
-
 	@Override public void start() throws Exception {
-		Vertx vertx = getVertx();
-
-		HttpServer server = vertx.createHttpServer();
-		Router router = Router.router(vertx);
+		HttpServer server = getVertx().createHttpServer();
+		Router router = Router.router(getVertx());
 		router.route().handler(BodyHandler.create());
-
 		router.route(HttpMethod.POST, "/").handler(this::post);
 		router.route(HttpMethod.GET, "/:id").handler(this::get);
 		router.route(HttpMethod.PUT, "/:id").handler(this::put);
 		router.route(HttpMethod.DELETE, "/:id").handler(this::delete);
-
 		server.requestHandler(router).listen(8081, (result) -> System.out.println(result.succeeded() ? "Inicio exitoso" : "Error al iniciar") );
 	}
-	
 	void post(RoutingContext routingContext) {
 		JsonObject json = routingContext.getBodyAsJson();
 		Tuple tuple = Tuple.of(json.getValue("name"), json.getValue("description"));
@@ -52,10 +42,8 @@ public class VertxCrudMySQL extends AbstractVerticle {
 				routingContext.response().setStatusCode(201).end(json.encode());
 			} else {
 				routingContext.response().end(ar.cause().getMessage());
-			}
-		});
+			} });
 	}
-
 	void get(RoutingContext routingContext) {
 		client.preparedQuery("SELECT id,name,description FROM user WHERE id=?").execute(Tuple.of(routingContext.request().getParam("id")), ar -> {
 			if (ar.succeeded()) {
@@ -69,10 +57,8 @@ public class VertxCrudMySQL extends AbstractVerticle {
 				}
 			} else {
 				routingContext.response().end(ar.cause().getMessage());
-			}
-		});
+			} });
 	}
-
 	void put(RoutingContext routingContext) {
 		JsonObject json = routingContext.getBodyAsJson();
 		Tuple tuple = Tuple.of(json.getValue("name"), json.getValue("description"), routingContext.request().getParam("id"));
@@ -81,10 +67,8 @@ public class VertxCrudMySQL extends AbstractVerticle {
 				routingContext.response().end(json.encode());
 			} else {
 				routingContext.response().end(ar.cause().getMessage());
-			}
-		});
+			} });
 	}
-
 	void delete(RoutingContext routingContext) {
 		Tuple tuple = Tuple.of(routingContext.request().getParam("id"));
 		client.preparedQuery("DELETE FROM user WHERE id=?").execute(tuple, ar -> {
@@ -92,7 +76,6 @@ public class VertxCrudMySQL extends AbstractVerticle {
 				routingContext.response().end("");
 			} else {
 				routingContext.response().end(ar.cause().getMessage());
-			}
-		});
+			} });
 	}
 }

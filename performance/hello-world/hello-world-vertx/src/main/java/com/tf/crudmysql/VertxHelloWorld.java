@@ -10,26 +10,18 @@ import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
 
 public class VertxHelloWorld extends AbstractVerticle {
-
 	public static void main(String[] args) {
-		DeploymentOptions deploymentOptions = new DeploymentOptions();
-        deploymentOptions.setInstances(12);
-		Vertx vertx = Vertx.vertx();
-		vertx.deployVerticle(VertxHelloWorld.class,deploymentOptions);
+		DeploymentOptions deploymentOptions = new DeploymentOptions().setInstances(12);
+		Vertx.vertx().deployVerticle(VertxHelloWorld.class,deploymentOptions);
 	}
-
 	@Override public void start() throws Exception {
-		Vertx vertx = getVertx();
-
-		HttpServer server = vertx.createHttpServer();
-		Router router = Router.router(vertx);
+		HttpServer server = getVertx().createHttpServer();
+		Router router = Router.router(getVertx());
 		router.route().handler(BodyHandler.create());
-
 		router.route(HttpMethod.GET, "/").handler(this::get);
-
-		server.requestHandler(router).listen(8081, (result) -> System.out.println(result.succeeded() ? "Inicio exitoso" : "Error al iniciar") );
+		server.requestHandler(router).
+		listen(8081, (result) -> System.out.println(result.succeeded() ? "Inicio exitoso" : "Error al iniciar") );
 	}
-	
 	void get(RoutingContext routingContext) {
 		routingContext.response().end("Hello world");
 	}
