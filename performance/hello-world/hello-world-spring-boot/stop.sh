@@ -1,4 +1,4 @@
 #!/bin/sh
 
-docker stop crud-mysql
-docker rm crud-mysql
+read CURRENT_PID < ./hello-world-spring-boot.pid
+kill -9 $CURRENT_PID

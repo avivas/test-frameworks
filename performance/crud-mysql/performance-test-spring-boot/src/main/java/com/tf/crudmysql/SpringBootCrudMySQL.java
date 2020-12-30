@@ -1,5 +1,4 @@
 package com.tf.crudmysql;
-
 import java.util.Optional;
 
 import javax.persistence.Column;
@@ -12,6 +11,7 @@ import javax.persistence.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +27,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Getter;
 import lombok.Setter;
-
 @RestController @EnableTransactionManagement @SpringBootApplication @Transactional
 public class SpringBootCrudMySQL {
 	@Autowired private UserRepository userRepository;
@@ -49,7 +48,9 @@ public class SpringBootCrudMySQL {
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	@DeleteMapping("/{id}") ResponseEntity<Void> delete(@PathVariable("id") Long id) {
-		this.userRepository.deleteById(id);
+		try {
+			this.userRepository.deleteById(id);
+		} catch (EmptyResultDataAccessException ex) {}
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	public static void main(String[] args) {

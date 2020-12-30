@@ -30,4 +30,12 @@ echo $! > ./crud-mysql-spring-boot.pid
 sleep 5
 echo "Iniciando test"
 WRK_HOME=/home/alejo/Descargas/wrk2-master
-$WRK_HOME/wrk -t12 -c200 -d60s -R600000 -s ./wrk2.lua  http://localhost:8080
+echo "Test POST"
+$WRK_HOME/wrk -t12 -c200 -d60s -R600000 -s ./wrk2-post.lua   http://localhost:8080
+echo "Test PUT"
+$WRK_HOME/wrk -t12 -c200 -d60s -R600000 -s ./wrk2-put.lua    http://localhost:8080
+echo "Test GET"
+$WRK_HOME/wrk -t12 -c200 -d60s -R600000                      http://localhost:8080/1
+echo "Test DELETE"
+$WRK_HOME/wrk -t12 -c200 -d60s -R600000 -s ./wrk2-delete.lua http://localhost:8080/
+
