@@ -1,4 +1,7 @@
-#!/bin/sh
+#!/bin/bash
+
+. ~/.sdkman/bin/sdkman-init.sh
+sdk use java 15.0.1.hs-adpt
 
 echo "Construyendo crud-mysql-vertx"
 mvn clean package
@@ -9,7 +12,7 @@ java -Xms135M\
      -Xmx135M\
      -Xss190k\
      -Dcom.sun.management.jmxremote=true\
-     -Dcom.sun.management.jmxremote.port=2223\
+     -Dcom.sun.management.jmxremote.port=3081\
      -Dcom.sun.management.jmxremote.authenticate=false\
      -Dcom.sun.management.jmxremote.ssl=false\
      -jar\

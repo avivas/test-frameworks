@@ -1,4 +1,4 @@
-package com.tf.crudmysql;
+package com.tf.helloworld.vertex;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.DeploymentOptions;
