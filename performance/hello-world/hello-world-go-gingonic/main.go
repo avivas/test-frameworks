@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -20,4 +21,5 @@ func main() {
 		context.String(http.StatusOK, "Hello world")
 	})
 	engine.Run(":8082")
+	fmt.Println("Server started on port 8082")
 }
