@@ -2,9 +2,10 @@
 #!/bin/sh
 
 echo "Construyendo hello-world-go-gingonic"
+go build .
 
 echo "Iniciando aplicacion"
-./main &
+./hello-world-go-gingonic &
 
 echo $! > ./hello-world-go-gingonic.pid     
 sleep 1
