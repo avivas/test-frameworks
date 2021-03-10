@@ -4,10 +4,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.test-frameworks</groupId>
-	<artifactId>hello-world-spring-boot</artifactId>
+	<artifactId>hello-world-java-spring-boot</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
-	<name>hello-world-spring-boot</name>
+	<name>hello-world-java-spring-boot</name>
 	<description>hello-world-spring-boot</description>
 	<parent>
 		<groupId>org.springframework.boot</groupId>

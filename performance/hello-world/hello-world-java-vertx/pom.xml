@@ -4,10 +4,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.test-frameworks</groupId>
-	<artifactId>hello-world-vertx</artifactId>
+	<artifactId>hello-world-java-vertx</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
-	<name>hello-world-vertx</name>
+	<name>hello-world-java-vertx</name>
 	<description>Hello world Vertx</description>
 	<properties>
 		<maven.compiler.source>15</maven.compiler.source>
