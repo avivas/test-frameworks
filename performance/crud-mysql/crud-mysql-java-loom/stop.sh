@@ -1,6 +1,7 @@
 #!/bin/sh
 
 docker stop crud-java-loom_mysql_1
+docker rm crud-java-loom_mysql_1
 
 read CURRENT_PID < ./crud-mysql-java-loom.pid
 

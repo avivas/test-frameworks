@@ -2,3 +2,5 @@
 /.classpath
 /.project
 /crud-mysql-java-loom.pid
+/dependency-reduced-pom.xml
+/.settings/
