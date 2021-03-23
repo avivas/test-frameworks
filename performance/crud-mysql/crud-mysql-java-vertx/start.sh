@@ -21,7 +21,7 @@ java -Xms135M\
      -Dcom.sun.management.jmxremote.authenticate=false\
      -Dcom.sun.management.jmxremote.ssl=false\
      -jar\
-     target/crud-mysql-vertx-1.0.jar &
+     target/crud-mysql-java-vertx-1.0.jar &
 
 echo $! > ./crud-mysql-vertx.pid    
      
