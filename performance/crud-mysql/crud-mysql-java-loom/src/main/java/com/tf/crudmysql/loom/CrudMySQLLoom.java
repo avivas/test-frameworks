@@ -7,7 +7,9 @@ import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
@@ -37,7 +39,6 @@ public class CrudMySQLLoom implements HttpHandler {
 		HttpServer server = HttpServer.create(new InetSocketAddress("localhost", 8085), 0);
 		server.createContext("/", new CrudMySQLLoom());
 		ExecutorService threadPoolExecutor = Executors.newVirtualThreadExecutor();
-		threadPoolExecutor = Executors.newFixedThreadPool(1000);
 		server.setExecutor(threadPoolExecutor);
 		server.start();
 		System.out.println(" Server started on port 8085");
@@ -64,48 +65,81 @@ public class CrudMySQLLoom implements HttpHandler {
 				get(httpExchange);
 			}
 		} catch (Exception e) {
-			outputStream.write(e.toString().getBytes());
+			String message = e.toString();
+			httpExchange.sendResponseHeaders(500, message.length());
+			outputStream.write(message.getBytes());
+			System.out.println(message);
 		}
 
 		outputStream.flush();
 		outputStream.close();
 	}
 
-	void get(HttpExchange httpExchange) throws IOException {
+	void get(HttpExchange httpExchange) throws IOException, SQLException {
+		String path = httpExchange.getRequestURI().getPath();
+		String id = path.substring(path.lastIndexOf('/')+1);
 		OutputStream outputStream = httpExchange.getResponseBody();
-		String htmlResponse = "GET";
-		httpExchange.sendResponseHeaders(200, htmlResponse.length());
-		outputStream.write(htmlResponse.toString().getBytes());
+		try (Connection connection = dataSource.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM user WHERE id=?");) {
+			preparedStatement.setString(1, id);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				Map<String, Object> map = new HashMap<>();
+				map.put("id", resultSet.getInt("id"));
+			    map.put("name", resultSet.getString("name"));
+			    map.put("description", resultSet.getString("description"));
+			    String result = mapper.writeValueAsString(map);
+			    httpExchange.sendResponseHeaders(200, result.length());
+			    outputStream.write(result.getBytes());
+			} else {
+				httpExchange.sendResponseHeaders(404, "".length());
+				outputStream.write("".getBytes());
+			}
+			resultSet.close();
+		}
 	}
-	
-	String response = "OK";
 
 	@SuppressWarnings("unchecked") void post(HttpExchange httpExchange) throws IOException, SQLException {
 		OutputStream outputStream = httpExchange.getResponseBody();
 		InputStream inputStreamBody = httpExchange.getRequestBody();
 		Map<String, String> jsonMap = mapper.readValue(inputStreamBody, Map.class);
-		try (Connection connection = dataSource.getConnection();
-			PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO user (name,description) values(?,?)");) {
+		String response = jsonMap.toString();
+		try (Connection connection = dataSource.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO user (name,description) values(?,?)");) {
 			preparedStatement.setString(1, jsonMap.get("name"));
 			preparedStatement.setString(2, jsonMap.get("description"));
 			preparedStatement.execute();
-			
+
 			httpExchange.sendResponseHeaders(200, response.length());
-			outputStream.write(response.toString().getBytes());
+			outputStream.write(response.getBytes());
 		}
 	}
 
-	void put(HttpExchange httpExchange) throws IOException {
+	@SuppressWarnings("unchecked") void put(HttpExchange httpExchange) throws IOException, SQLException {
 		OutputStream outputStream = httpExchange.getResponseBody();
-		String htmlResponse = "PUT";
-		httpExchange.sendResponseHeaders(200, htmlResponse.length());
-		outputStream.write(htmlResponse.toString().getBytes());
+		InputStream inputStreamBody = httpExchange.getRequestBody();
+		String path = httpExchange.getRequestURI().getPath();
+		String id = path.substring(path.lastIndexOf('/')+1);
+		Map<String, String> jsonMap = mapper.readValue(inputStreamBody, Map.class);
+		String response = jsonMap.toString();
+		try (Connection connection = dataSource.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("UPDATE user set name=?,description=? WHERE id=?");) {
+			preparedStatement.setString(1, jsonMap.get("name"));
+			preparedStatement.setString(2, jsonMap.get("description"));
+			preparedStatement.setString(3, id);
+			preparedStatement.execute();
+
+			httpExchange.sendResponseHeaders(200, response.length());
+			outputStream.write(response.getBytes());
+		}
 	}
 
-	void delete(HttpExchange httpExchange) throws IOException {
+	void delete(HttpExchange httpExchange) throws IOException, SQLException {
+		String path = httpExchange.getRequestURI().getPath();
+		String id = path.substring(path.lastIndexOf('/')+1);
 		OutputStream outputStream = httpExchange.getResponseBody();
-		String htmlResponse = "DELETE";
-		httpExchange.sendResponseHeaders(200, htmlResponse.length());
-		outputStream.write(htmlResponse.toString().getBytes());
+		try (Connection connection = dataSource.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM user WHERE id=?");) {
+			preparedStatement.setString(1, id);
+			preparedStatement.executeUpdate();
+			httpExchange.sendResponseHeaders(200, "".length());
+			outputStream.write("".getBytes());
+		}
 	}
 }

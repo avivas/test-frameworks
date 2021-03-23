@@ -13,6 +13,7 @@ echo "Using java 17 loom"
 . ~/.sdkman/bin/sdkman-init.sh
 sdk use java 17.ea.2.lm-open
 
+#~/Descargas/openjdk-17-loom+4-174_linux-x64_bin/jdk-17/bin/
 java -Xms135M\
      -Xmx135M\
      -Xss190k\
@@ -31,10 +32,10 @@ echo "Stating test"
 WRK_HOME=/home/alejo/Descargas/wrk2-master
 echo "Test POST"
 $WRK_HOME/wrk -t12 -c200 -d60s -R600000 -s ./wrk2-post.lua   http://localhost:8085
-#echo "Test PUT"
-#$WRK_HOME/wrk -t12 -c200 -d60s -R600000 -s ./wrk2-put.lua    http://localhost:8085
-#echo "Test GET"
-#$WRK_HOME/wrk -t12 -c200 -d60s -R600000                      http://localhost:8085/1
-#echo "Test DELETE"
-#$WRK_HOME/wrk -t12 -c200 -d60s -R600000 -s ./wrk2-delete.lua http://localhost:8085/
+echo "Test PUT"
+$WRK_HOME/wrk -t12 -c200 -d60s -R600000 -s ./wrk2-put.lua    http://localhost:8085
+echo "Test GET"
+$WRK_HOME/wrk -t12 -c200 -d60s -R600000                      http://localhost:8085/1
+echo "Test DELETE"
+$WRK_HOME/wrk -t12 -c200 -d60s -R600000 -s ./wrk2-delete.lua http://localhost:8085/
 
