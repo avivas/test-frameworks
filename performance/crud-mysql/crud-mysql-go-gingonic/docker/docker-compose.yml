@@ -1,0 +1,15 @@
+version: '3.2'
+services:
+  mysql:
+    image: mysql:8.0.22
+    restart: always
+    ports:
+      - '43306:3306'
+    volumes:
+      - $PWD/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
+      - $PWD/sql:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=password 
+      - MYSQL_DATABASE=crud 
+      - MYSQL_USER=user 
+      - MYSQL_PASSWORD=password
