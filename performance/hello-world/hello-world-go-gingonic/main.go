@@ -11,15 +11,15 @@ import (
 func main() {
 	gin.SetMode(gin.ReleaseMode)
 	engine := gin.New()
+	gin.DefaultWriter = ioutil.Discard
 	engine.Use(
 		gin.LoggerWithWriter(gin.DefaultWriter, "/"),
 		gin.Recovery(),
 	)
 
-	gin.DefaultWriter = ioutil.Discard
 	engine.GET("/", func(context *gin.Context) {
 		context.String(http.StatusOK, "Hello world")
 	})
-	engine.Run(":8082")
-	fmt.Println("Server started on port 8082")
+	engine.Run(":8080")
+	fmt.Println("Server started on port 8080")
 }

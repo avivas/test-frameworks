@@ -1,6 +1,14 @@
-#!/bin/sh
+#!/bin/bash
 
-echo "Hello World: Spring"
-autocannon -c 10000 -a 100000 http://localhost:8080/
-echo "Hello World: Vertx" 
-autocannon -c 10000 -a 100000 http://localhost:8081/
+function test_k6 {
+    k6 run hello-world-k6.js
+}
+
+function test_wrk {
+    WRK_HOME=/home/alejo/Descargas/wrk2-master
+    $WRK_HOME/wrk -t12 -c200 -d60s -R600000 http://localhost:8080/
+}
+
+echo "Starting test"
+#test_wrk
+test_k6
