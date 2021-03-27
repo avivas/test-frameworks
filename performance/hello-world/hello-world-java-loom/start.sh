@@ -24,7 +24,7 @@ echo $! > ./hello-world-java-loom-1.0.pid
 
 sleep 5
 
-echo "Iniciando test"
-WRK_HOME=/home/alejo/Descargas/wrk2-master
-echo "Test GET"
-$WRK_HOME/wrk -t12 -c200 -d60s -R600000 http://localhost:8084/
+#echo "Iniciando test"
+#WRK_HOME=/home/alejo/Descargas/wrk2-master
+#echo "Test GET"
+#$WRK_HOME/wrk -t12 -c200 -d60s -R600000 http://localhost:8084/

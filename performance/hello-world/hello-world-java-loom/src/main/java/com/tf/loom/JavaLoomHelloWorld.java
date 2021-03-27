@@ -23,11 +23,11 @@ class HelloWorldHttpHandler implements HttpHandler {
 
 public class JavaLoomHelloWorld {
 	public static void main(String[] args) throws IOException {
-		HttpServer server = HttpServer.create(new InetSocketAddress("localhost", 8084), 0);
+		HttpServer server = HttpServer.create(new InetSocketAddress("localhost", 8080), 0);
 		server.createContext("/", new HelloWorldHttpHandler());
 		ExecutorService threadPoolExecutor = Executors.newVirtualThreadExecutor();
 		server.setExecutor(threadPoolExecutor);
 		server.start();
-		System.out.println(" Server started on port 8084");
+		System.out.println(" Server started on port 8080");
 	}
 }

@@ -1,10 +1,10 @@
 
 #!/bin/sh
 
-echo "Construyendo hello-world-go-gingonic"
+echo "Build hello-world-go-gingonic"
 go build .
 
-echo "Iniciando aplicacion"
+echo "Start hello-world-go-gingonic"
 ./hello-world-go-gingonic &
 
 echo $! > ./hello-world-go-gingonic.pid     

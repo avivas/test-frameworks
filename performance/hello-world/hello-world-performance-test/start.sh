@@ -6,9 +6,9 @@ function test_k6 {
 
 function test_wrk {
     WRK_HOME=/home/alejo/Descargas/wrk2-master
-    $WRK_HOME/wrk -t12 -c200 -d60s -R600000 http://localhost:8080/
+    $WRK_HOME/wrk -t12 -c200 -d60s -R600000 http://localhost:8080/ > summary.json
 }
 
 echo "Starting test"
-#test_wrk
-test_k6
+test_wrk
+#test_k6
