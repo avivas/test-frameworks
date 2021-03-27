@@ -1,11 +1,11 @@
 #!/bin/sh
 
 
-echo "Construyendo crud-mysql-spring-boot"
+echo "Build hello-world-java-spring-boot"
 mvn clean package
 
 
-echo "Iniciando aplicacion"
+echo "Starring hello-world-java-spring-boot"
 java -Xms210M\
      -Xmx210M\
      -Xss190k\
@@ -14,14 +14,15 @@ java -Xms210M\
      -Dcom.sun.management.jmxremote.authenticate=false\
      -Dcom.sun.management.jmxremote.ssl=false\
      -jar\
-     target/hello-world-spring-boot-1.0.jar &
+     target/hello-world-java-spring-boot-1.0.jar &
 
 echo $! > ./hello-world-spring-boot.pid
      
 sleep 5
-echo "Iniciando test"
-WRK_HOME=/home/alejo/Descargas/wrk2-master
-$WRK_HOME/wrk -t12 -c200 -d60s -R600000 http://localhost:8080/
+
+#echo "Iniciando test"
+#WRK_HOME=/home/alejo/Descargas/wrk2-master
+#$WRK_HOME/wrk -t12 -c200 -d60s -R600000 http://localhost:8080/
 
 
   

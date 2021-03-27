@@ -3,10 +3,10 @@
 . ~/.sdkman/bin/sdkman-init.sh
 sdk use java 15.0.1.hs-adpt
 
-echo "Construyendo crud-mysql-vertx"
+echo "Build hello-world-java-vertx"
 mvn clean package
 
-echo "Iniciando aplicacion"
+echo "Start hello-world-java-vertx"
 
 java -Xms135M\
      -Xmx135M\
@@ -16,14 +16,14 @@ java -Xms135M\
      -Dcom.sun.management.jmxremote.authenticate=false\
      -Dcom.sun.management.jmxremote.ssl=false\
      -jar\
-     target/hello-world-vertx-1.0.jar &
+     target/hello-world-java-vertx-1.0.jar &
 
 echo $! > ./hello-world-vertx.pid
      
 sleep 5
 
-echo "Iniciando test"
-WRK_HOME=/home/alejo/Descargas/wrk2-master
-echo "Test GET"
-$WRK_HOME/wrk -t12 -c200 -d60s -R600000 http://localhost:8081/
+#echo "Iniciando test"
+#WRK_HOME=/home/alejo/Descargas/wrk2-master
+#echo "Test GET"
+#$WRK_HOME/wrk -t12 -c200 -d60s -R600000 http://localhost:8081/
 
