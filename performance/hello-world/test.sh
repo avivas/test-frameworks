@@ -27,4 +27,6 @@ function test_framework {
 #----------------------------------------
 test_framework hello-world-go-gingonic
 test_framework hello-world-java-loom
+test_framework hello-world-java-spring-boot
+test_framework hello-world-java-vertx
 # ----------------------------------------
