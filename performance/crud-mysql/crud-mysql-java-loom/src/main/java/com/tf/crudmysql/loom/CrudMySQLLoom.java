@@ -36,12 +36,12 @@ public class CrudMySQLLoom implements HttpHandler {
 		System.out.println(config.getMaximumPoolSize());
 		dataSource = new HikariDataSource(config);
 
-		HttpServer server = HttpServer.create(new InetSocketAddress("localhost", 8085), 0);
+		HttpServer server = HttpServer.create(new InetSocketAddress("localhost", 8080), 0);
 		server.createContext("/", new CrudMySQLLoom());
 		ExecutorService threadPoolExecutor = Executors.newVirtualThreadExecutor();
 		server.setExecutor(threadPoolExecutor);
 		server.start();
-		System.out.println(" Server started on port 8085");
+		System.out.println(" Server started on port 8080");
 	}
 
 	@Override public void handle(HttpExchange httpExchange) throws IOException {

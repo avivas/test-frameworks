@@ -39,12 +39,12 @@ func main() {
 	engine.GET("/:id", Get)
 	engine.PUT("/:id", Put)
 	engine.DELETE("/:id", Delete)
-	err = engine.Run(":8086")
+	err = engine.Run(":8080")
 	if err != nil {
 		fmt.Println(err.Error())
 		return
 	}
-	fmt.Println("Server started on port 8086")
+	fmt.Println("Server started on port 8080")
 }
 
 func Get(context *gin.Context) {
