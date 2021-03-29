@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Iniciando docker mysql-java-loom"
+echo "Starting docker crud-mysql-java-loom"
 cd src/main/docker 
 docker-compose -p crud-java-loom up -d
 sleep 10
@@ -27,15 +27,3 @@ java -Xms135M\
 echo $! > ./crud-mysql-java-loom.pid    
      
 sleep 5
-
-#echo "Stating test"
-#WRK_HOME=/home/alejo/Descargas/wrk2-master
-#echo "Test POST"
-#$WRK_HOME/wrk -t12 -c200 -d60s -R600000 -s ./wrk2-post.lua   http://localhost:8085
-#echo "Test PUT"
-#$WRK_HOME/wrk -t12 -c200 -d60s -R600000 -s ./wrk2-put.lua    http://localhost:8085
-#echo "Test GET"
-#$WRK_HOME/wrk -t12 -c200 -d60s -R600000                      http://localhost:8085/1
-#echo "Test DELETE"
-#$WRK_HOME/wrk -t12 -c200 -d60s -R600000 -s ./wrk2-delete.lua http://localhost:8085/
-
