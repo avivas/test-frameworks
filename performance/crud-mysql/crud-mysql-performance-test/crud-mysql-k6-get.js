@@ -2,7 +2,7 @@ import http from 'k6/http';
 import { jUnit, textSummary } from 'https://jslib.k6.io/k6-summary/0.0.1/index.js';
 
 export let options = {
-  vus: 100,
+  vus: 300,
   duration: '60s',
 };
 
@@ -16,6 +16,6 @@ export function handleSummary(data) {
   console.log('Preparing the end-of-test summary...');
   return {
       'stdout': textSummary(data, { indent: ' ', enableColors: true}),
-      'summary-get.json': JSON.stringify(data),
+      'summary-get.json': JSON.stringify(data.metrics.iterations),
   }
 }
