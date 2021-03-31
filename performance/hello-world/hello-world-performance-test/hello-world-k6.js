@@ -11,9 +11,16 @@ export default function () {
 }
 
 export function handleSummary(data) {
-  console.log('Preparing the end-of-test summary...');
-  return {
-      'stdout': textSummary(data, { indent: ' ', enableColors: true}),
-      'summary.json': JSON.stringify(data),
-  }
+  console.log(`Preparing the end-of-test summary... ${__ENV.APP_NAME}`);
+  const appName = __ENV.APP_NAME;
+  data.appName = appName;
+  const contentToExport =    '"' + appName
+                          + '",' + data.metrics.iterations.values.count
+                          + ','  + data.metrics.iterations.values.rate
+                          + ','  + data.metrics.http_req_failed.values.passes
+                          ;
+  const summaryFileName = `summary-${appName}.csv`;      
+  var result = { 'stdout': textSummary(data, { indent: ' ', enableColors: true}) };
+  result[summaryFileName] = contentToExport;
+  return result;
 }

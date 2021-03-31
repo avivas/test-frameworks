@@ -13,8 +13,7 @@ function test_framework {
 
     # Start test
     cd hello-world-performance-test
-    ./start.sh
-    mv summary.json summary-$1.json
+    ./start.sh $1
     cd ../
 
     # Stop app
@@ -30,3 +29,4 @@ test_framework hello-world-java-loom
 test_framework hello-world-java-spring-boot
 test_framework hello-world-java-vertx
 # ----------------------------------------
+
