@@ -12,11 +12,8 @@ function test_framework {
 
     # Start test
     cd crud-mysql-performance-test
-    ./start.sh
-    mv summary-post.json   summary-post-$1.json
-    mv summary-put.json    summary-put-$1.json
-    mv summary-get.json    summary-get-$1.json
-    mv summary-delete.json summary-delete-$1.json
+    ./start.sh $1
+
     cd ../
 
     # Stop app
@@ -32,3 +29,44 @@ test_framework crud-mysql-java-loom
 test_framework crud-mysql-java-spring-boot
 test_framework crud-mysql-java-vertx
 # ----------------------------------------
+
+
+# Merge results
+cd crud-mysql-performance-test
+
+echo "app,method,total request,request/sec,failed request" > summary-crud-mysql.csv
+
+cat summary-delete-crud-mysql-java-vertx.csv >> summary-crud-mysql.csv
+echo >> summary-crud-mysql.csv
+cat summary-delete-crud-mysql-go-gingonic.csv >> summary-crud-mysql.csv
+echo >> summary-crud-mysql.csv
+cat summary-delete-crud-mysql-java-loom.csv >> summary-crud-mysql.csv
+echo >> summary-crud-mysql.csv
+cat summary-delete-crud-mysql-java-spring-boot.csv >> summary-crud-mysql.csv
+
+echo >> summary-crud-mysql.csv
+cat summary-get-crud-mysql-java-vertx.csv >> summary-crud-mysql.csv
+echo >> summary-crud-mysql.csv
+cat summary-get-crud-mysql-go-gingonic.csv >> summary-crud-mysql.csv
+echo >> summary-crud-mysql.csv
+cat summary-get-crud-mysql-java-loom.csv >> summary-crud-mysql.csv
+echo >> summary-crud-mysql.csv
+cat summary-get-crud-mysql-java-spring-boot.csv >> summary-crud-mysql.csv
+
+echo >> summary-crud-mysql.csv
+cat summary-post-crud-mysql-java-vertx.csv >> summary-crud-mysql.csv
+echo >> summary-crud-mysql.csv
+cat summary-post-crud-mysql-go-gingonic.csv >> summary-crud-mysql.csv
+echo >> summary-crud-mysql.csv
+cat summary-post-crud-mysql-java-loom.csv >> summary-crud-mysql.csv
+echo >> summary-crud-mysql.csv
+cat summary-post-crud-mysql-java-spring-boot.csv >> summary-crud-mysql.csv
+
+echo >> summary-crud-mysql.csv
+cat summary-put-crud-mysql-java-vertx.csv >> summary-crud-mysql.csv
+echo >> summary-crud-mysql.csv
+cat summary-put-crud-mysql-go-gingonic.csv >> summary-crud-mysql.csv
+echo >> summary-crud-mysql.csv
+cat summary-put-crud-mysql-java-loom.csv >> summary-crud-mysql.csv
+echo >> summary-crud-mysql.csv
+cat summary-put-crud-mysql-java-spring-boot.csv >> summary-crud-mysql.csv

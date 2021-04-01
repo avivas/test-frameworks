@@ -1,10 +1,10 @@
 #!/bin/bash
 
 function test_k6 {
-    k6 run crud-mysql-k6-post.js
-    k6 run crud-mysql-k6-put.js
-    k6 run crud-mysql-k6-get.js
-    k6 run crud-mysql-k6-delete.js
+    k6 run -e APP_NAME=$1 crud-mysql-k6-post.js
+    k6 run -e APP_NAME=$1 crud-mysql-k6-put.js
+    k6 run -e APP_NAME=$1 crud-mysql-k6-get.js
+    k6 run -e APP_NAME=$1 crud-mysql-k6-delete.js
 }
 
 function test_wrk {
@@ -21,4 +21,4 @@ function test_wrk {
 
 echo "Starting test"
 #test_wrk
-test_k6
+test_k6 $1
