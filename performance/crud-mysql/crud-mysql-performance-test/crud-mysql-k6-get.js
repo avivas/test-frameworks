@@ -6,6 +6,7 @@ export const options = { vus: 100, duration: '60s'};
 var id = 0;
 export default function () {
   id++;
+  id = id > 50000 ? 1 : id ;
   http.get(`http://localhost:8080/${id}`);
 }
 
