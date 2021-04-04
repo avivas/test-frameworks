@@ -13,7 +13,7 @@ function test_framework {
 
     # Start test
     cd hello-world-performance-test
-    ./start.sh $1
+    ./test.sh $1
     cd ../
 
     # Stop app
@@ -21,6 +21,10 @@ function test_framework {
     ./stop.sh
     cd ../
 }
+
+# Create summary file
+echo "app,total request,request/sec,failed request" > hello-world-performance-test/summary-hello-world.csv
+
 
 # Start test
 #----------------------------------------
