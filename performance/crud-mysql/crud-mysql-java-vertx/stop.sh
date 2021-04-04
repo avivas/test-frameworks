@@ -1,6 +1,7 @@
 #!/bin/sh
 
 docker stop crud-vertx_mysql_1
+docker rm crud-vertx_mysql_1
 
 read CURRENT_PID < ./crud-mysql-vertx.pid
 
