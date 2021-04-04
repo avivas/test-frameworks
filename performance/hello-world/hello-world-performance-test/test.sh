@@ -4,7 +4,7 @@ function test_k6 {
     k6 run -e APP_NAME=$1 hello-world-k6.js 
     cat summary-$1.csv >> summary-hello-world.csv 
     echo >> summary-hello-world.csv
-    rm cat summary-$1.csv
+    rm summary-$1.csv
 }
 
 function test_wrk {
