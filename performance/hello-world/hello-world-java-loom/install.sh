@@ -1,10 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-if [ -d "$HOME/.sdkman/" ] ; then
-  echo "Using installed sdk"
-else
-  curl -s "https://get.sdkman.io" | bash
-  source "$HOME/.sdkman/bin/sdkman-init.sh"
-fi
+source $HOME/.sdkman/bin/sdkman-init.sh
 
- sdk install java 17.ea.2.lm-open
+sdk install java 17.ea.2.lm-open
+sdk install maven 3.6.3
