@@ -19,7 +19,7 @@ function install_sdkman {
   if [ -d "$HOME/.sdkman/" ] ; then
     echo "Using installed sdkman"
   else
-    sudo apt install curl
+    sudo apt install curl unzip zip
     curl -s "https://get.sdkman.io" | bash
     source "$HOME/.sdkman/bin/sdkman-init.sh"
   fi
