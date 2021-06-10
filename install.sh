@@ -34,6 +34,7 @@ function install_gvm {
   then
     sudo apt-get install bison
     bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+    # source ~/.gvm/bin/gvm
   else
     echo "Using installed gvm"
   fi
@@ -47,6 +48,7 @@ function install_rustup {
   then
     sudo apt install curl
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    source $HOME/.cargo/bin
   else
     echo "Using installed rustup"
   fi
