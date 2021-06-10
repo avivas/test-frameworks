@@ -19,6 +19,7 @@ function install_sdkman {
   if [ -d "$HOME/.sdkman/" ] ; then
     echo "Using installed sdkman"
   else
+    sudo apt install curl
     curl -s "https://get.sdkman.io" | bash
     source "$HOME/.sdkman/bin/sdkman-init.sh"
   fi
@@ -44,6 +45,7 @@ function install_gvm {
 function install_rustup {
   if ! command -v rustup &> /dev/null 
   then
+    sudo apt install curl
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
   else
     echo "Using installed rustup"
