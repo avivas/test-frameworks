@@ -8,4 +8,4 @@
 
 ## Install
 
-sudo ./install.sh
+Run ./install.sh using a sudo user.

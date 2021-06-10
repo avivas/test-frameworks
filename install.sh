@@ -4,10 +4,10 @@
 function install_k6 {
   if ! command -v k6 &> /dev/null 
   then
-    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
+    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
     echo "deb https://dl.bintray.com/loadimpact/deb stable main" | sudo tee -a /etc/apt/sources.list
-    apt-get update
-    apt-get install k6
+    sudo apt-get update
+    sudo apt-get install k6
   else
     echo "Using installed k6"
   fi
@@ -31,7 +31,7 @@ function install_sdkman {
 function install_gvm {
   if ! command -v gvm &> /dev/null 
   then
-    apt-get install bison
+    sudo apt-get install bison
     bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
   else
     echo "Using installed gvm"
