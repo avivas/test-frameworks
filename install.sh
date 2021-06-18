@@ -32,9 +32,9 @@ function install_sdkman {
 function install_gvm {
   if ! command -v gvm &> /dev/null 
   then
-    sudo apt-get install bison
+    sudo apt-get install binutils bison gcc make
     bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
-    # source ~/.gvm/bin/gvm
+    source /home/alejo/.gvm/scripts/gvm
   else
     echo "Using installed gvm"
   fi
@@ -48,7 +48,7 @@ function install_rustup {
   then
     sudo apt install curl
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-    source $HOME/.cargo/bin
+    source $HOME/.cargo/env
   else
     echo "Using installed rustup"
   fi
