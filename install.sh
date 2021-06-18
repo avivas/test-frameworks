@@ -36,7 +36,7 @@ function install_sdkman {
 function install_gvm {
   if ! command -v gvm &> /dev/null 
   then
-    echo "Start: Install GVM >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" 
+    echo "Start: Install GVM ----------------------------------------------" 
     sudo apt-get install binutils bison gcc make -y
     bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
     source ~/.gvm/scripts/gvm
@@ -52,7 +52,7 @@ function install_gvm {
 function install_rustup {
   if ! command -v rustup &> /dev/null 
   then
-    echo "Start: Install RUST >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" 
+    echo "Start: Install RUST ----------------------------------------------" 
     sudo apt install curl -y
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
     source $HOME/.cargo/env
