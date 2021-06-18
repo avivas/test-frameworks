@@ -7,7 +7,7 @@ function uninstall_k6 {
     echo "k6 no installed"
   else
     echo "Uninstall k6"
-    sudo apt-get --purge remove k6
+    sudo apt-get --purge remove k6 -y
   fi
 }
 #-----------------------------------------------------------------------------------------------
@@ -16,7 +16,7 @@ function uninstall_k6 {
 function uninstall_sdkman {
   if [ -d "$HOME/.sdkman/" ] ; then
     echo "Uninstall sdkman"
-    sudo apt --purge remove curl unzip zip
+    sudo apt --purge remove curl unzip zip -y
     rm -rf ~/.sdkman
   else
     echo "sdkman no installed"
@@ -31,7 +31,7 @@ function uninstall_gvm {
     echo "gvm no installed"
   else
     echo "Uninstall gvm"
-    sudo apt-get --purge remove binutils bison gcc make
+    sudo apt-get --purge remove binutils bison gcc make -y
     rm -rf ~/.gvm    
   fi
 }
@@ -45,7 +45,7 @@ function uninstall_rustup {
     echo "Rustup no installed"
   else
     echo "Uninstall rustup"
-    sudo apt --purge remove curl
+    sudo apt --purge remove curl -y
     rustup self uninstall
   fi
 }
