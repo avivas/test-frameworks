@@ -4,10 +4,12 @@
 function install_k6 {
   if ! command -v k6 &> /dev/null 
   then
+    echo "Start: Install k6 ----------------------------------------------" 
     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
     echo "deb https://dl.bintray.com/loadimpact/deb stable main" | sudo tee -a /etc/apt/sources.list
     sudo apt-get update
     sudo apt-get install k6
+    echo "End  : Install k6 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" 
   else
     echo "Using installed k6"
   fi
@@ -19,9 +21,11 @@ function install_sdkman {
   if [ -d "$HOME/.sdkman/" ] ; then
     echo "Using installed sdkman"
   else
+    echo "Start: Install sdkman ----------------------------------------------" 
     sudo apt install curl unzip zip
     curl -s "https://get.sdkman.io" | bash
     source "$HOME/.sdkman/bin/sdkman-init.sh"
+    echo "End  : Install sdkman >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" 
   fi
 
   source $HOME/.sdkman/bin/sdkman-init.sh
@@ -32,9 +36,11 @@ function install_sdkman {
 function install_gvm {
   if ! command -v gvm &> /dev/null 
   then
+    echo "Start: Install GVM >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" 
     sudo apt-get install binutils bison gcc make
     bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
-    source /home/alejo/.gvm/scripts/gvm
+    source ~/.gvm/scripts/gvm
+    echo "End  : Install GVM >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" 
   else
     echo "Using installed gvm"
   fi
@@ -46,9 +52,11 @@ function install_gvm {
 function install_rustup {
   if ! command -v rustup &> /dev/null 
   then
+    echo "Start: Install RUST >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" 
     sudo apt install curl
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     source $HOME/.cargo/env
+    echo "End  : Install RUST >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" 
   else
     echo "Using installed rustup"
   fi
@@ -58,7 +66,7 @@ function install_rustup {
 
 #-> Install tools
 install_k6
-install_sdkman 
+install_sdkman
 install_gvm
 install_rustup
 
