@@ -30,7 +30,9 @@ echo "app,total request,request/sec,failed request" > hello-world-performance-te
 #----------------------------------------
 test_framework hello-world-go-gingonic
 test_framework hello-world-java-loom
+#test_framework hello-world-java-loom-socket
 test_framework hello-world-java-spring-boot
 test_framework hello-world-java-vertx
+test_framework hello-world-rust-actix
 # ----------------------------------------
 
