@@ -1,5 +1,7 @@
 #!/bin/bash
 
+rm -f ./hello-world-java-loom-1.0.pid
+
 . ~/.sdkman/bin/sdkman-init.sh
 sdk use java 17.ea.2.lm-open
  

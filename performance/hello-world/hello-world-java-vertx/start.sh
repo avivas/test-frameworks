@@ -1,5 +1,7 @@
 #!/bin/bash
 
+rm -f ./hello-world-vertx.pid
+
 . ~/.sdkman/bin/sdkman-init.sh
 sdk use java 15.0.1.hs-adpt
 

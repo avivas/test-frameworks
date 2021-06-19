@@ -1,5 +1,7 @@
 #!/bin/sh
 
+rm -f ./hello-world-spring-boot.pid
+
 
 echo "Build hello-world-java-spring-boot"
 mvn clean package

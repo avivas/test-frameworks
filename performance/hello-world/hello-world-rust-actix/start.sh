@@ -1,5 +1,7 @@
 #!/bin/bash
 
+rm -f ./hello-world-rust-actix.pid
+
 echo "Build hello-world-rust-actix"
 cargo build --release
 
