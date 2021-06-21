@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm -f ./hello-world-java-loom-1.0.pid
+rm -f ./hello-world-java-loom.pid
 
 . ~/.sdkman/bin/sdkman-init.sh
 sdk use java 17.ea.2.lm-open
@@ -19,6 +19,6 @@ java -Xms440M\
      -jar\
      target/hello-world-java-loom-1.0.jar &
 
-echo $! > ./hello-world-java-loom-1.0.pid
+echo $! > ./hello-world-java-loom.pid
 
 sleep 5
