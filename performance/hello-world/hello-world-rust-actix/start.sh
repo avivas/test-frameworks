@@ -2,9 +2,6 @@
 
 rm -f ./hello-world-rust-actix.pid
 
-echo "Build hello-world-rust-actix"
-cargo build --release
-
 echo "Start hello-world-rust-actix"
 ./target/release/hello-world-rust-actix &
 

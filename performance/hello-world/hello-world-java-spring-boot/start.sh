@@ -2,10 +2,7 @@
 
 rm -f ./hello-world-spring-boot.pid
 
-
-echo "Build hello-world-java-spring-boot"
-mvn clean package
-
+sdk use java 15.0.1.hs-adpt
 
 echo "Starring hello-world-java-spring-boot"
 java -Xms210M\
@@ -21,10 +18,6 @@ java -Xms210M\
 echo $! > ./hello-world-spring-boot.pid
      
 sleep 5
-
-#echo "Iniciando test"
-#WRK_HOME=/home/alejo/Descargas/wrk2-master
-#$WRK_HOME/wrk -t12 -c200 -d60s -R600000 http://localhost:8080/
 
 
   
