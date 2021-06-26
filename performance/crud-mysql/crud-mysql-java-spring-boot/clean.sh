@@ -2,7 +2,7 @@
 
 ./stop.sh
 
-rm -f crud-mysql-vertx.pid
+rm -f crud-mysql-spring-boot.pid
 
 source $HOME/.sdkman/bin/sdkman-init.sh
 sdk use java 15.0.1.hs-adpt

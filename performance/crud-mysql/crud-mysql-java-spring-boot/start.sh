@@ -8,10 +8,6 @@ cd ../../..
 sleep 10
 
 
-echo "Build crud-mysql-spring-boot"
-mvn clean package
-
-
 echo "Starting crud-mysql-spring-boot"
 java -Xms800M\
      -Xmx800M\

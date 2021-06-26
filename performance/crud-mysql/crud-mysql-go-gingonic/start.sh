@@ -7,10 +7,6 @@ docker-compose -p crud-mysql-go-gingonic up -d
 cd ../
 sleep 10
 
-
-echo "Building crud-mysql-go-gingonic"
-go build .
-
 echo "Starting crud-mysql-go-gingonic"
 ./crud-mysql-go-gingonic &
 

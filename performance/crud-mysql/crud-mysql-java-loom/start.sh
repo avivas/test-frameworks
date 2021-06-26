@@ -6,12 +6,10 @@ docker-compose -p crud-java-loom up -d
 sleep 10
 cd ../../..
 
-./build.sh
-
 echo "Starting crud-mysql-java-loom"
 echo "Using java 17 loom"
 . ~/.sdkman/bin/sdkman-init.sh
-sdk use java 17.ea.2.lm-open
+sdk use java 17.ea.7.lm-open
 
 #~/Descargas/openjdk-17-loom+4-174_linux-x64_bin/jdk-17/bin/
 java -Xms135M\

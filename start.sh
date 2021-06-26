@@ -6,6 +6,6 @@ cd performance/hello-world/
 cd ../../
 
 # Run crud mysql tests
-#cd performance/crud-mysql/
-#./start.sh
-#cd ../../
+cd performance/crud-mysql/
+./start.sh
+cd ../../

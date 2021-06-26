@@ -7,9 +7,7 @@ docker-compose -p crud-vertx up -d
 sleep 10
 
 echo "Build crud-mysql-java-vertx"
-
 cd ../../..
-mvn clean package
 
 echo "Starting crud-mysql-java-vertx"
 

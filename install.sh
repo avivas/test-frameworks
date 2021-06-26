@@ -76,3 +76,9 @@ install_rustup
 cd ./performance/hello-world/
 ./install.sh
 cd ../..
+
+
+# Install crud-mysql
+cd ./performance/crud-mysql/
+./install.sh
+cd ../..
