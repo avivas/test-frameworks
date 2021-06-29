@@ -1,8 +1,9 @@
 #!/bin/sh
 
-cd ./performance/hello-world/
+cd ./hello-world/
 ./build.sh
-cd ../..
+cd ../
 
-cd ./performance/crud-mysql
+cd ./crud-mysql
 ./build.sh
+cd ../

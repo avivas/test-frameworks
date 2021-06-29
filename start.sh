@@ -1,11 +1,11 @@
 #!/bin/sh
 
 # Run hello world tests
-cd performance/hello-world/
+cd ./hello-world/
 ./start.sh
-cd ../../
+cd ../
 
 # Run crud mysql tests
-cd performance/crud-mysql/
+cd ./crud-mysql/
 ./start.sh
-cd ../../
+cd ../

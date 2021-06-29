@@ -73,12 +73,12 @@ install_gvm
 install_rustup
 
 # Install hello world
-cd ./performance/hello-world/
+cd ./hello-world/
 ./install.sh
-cd ../..
+cd ../
 
 
 # Install crud-mysql
-cd ./performance/crud-mysql/
+cd ./crud-mysql/
 ./install.sh
-cd ../..
+cd ../

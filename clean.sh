@@ -1,9 +1,9 @@
 #!/bin/sh
 
-cd ./performance/hello-world/
+cd ./hello-world/
 ./clean.sh
-cd ../..
+cd ../
 
-cd ./performance/crud-mysql/
+cd ./crud-mysql/
 ./clean.sh
-cd ../..
+cd ../
