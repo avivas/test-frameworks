@@ -2,10 +2,10 @@
 
 # Run hello world tests
 cd ./hello-world/
-./start.sh
+./run-test.sh
 cd ../
 
 # Run crud mysql tests
 cd ./crud-mysql/
-./start.sh
+./run-test.sh
 cd ../

@@ -14,5 +14,4 @@ function test_wrk {
 
 echo "Starting test: $1"
 
-#test_wrk
 test_k6 $1

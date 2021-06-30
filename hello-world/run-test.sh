@@ -13,7 +13,7 @@ function test_framework {
 
     # Start test
     cd hello-world-performance-test
-    ./test.sh $1
+    ./run-test.sh $1
     cd ../
 
     # Stop app
