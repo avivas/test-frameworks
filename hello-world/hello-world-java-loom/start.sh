@@ -3,7 +3,7 @@
 rm -f ./hello-world-java-loom.pid
 
 . ~/.sdkman/bin/sdkman-init.sh
-sdk use java 17.ea.2.lm-open
+sdk use java 17.ea.7.lm-open
 
 #-XX:+UseZGC\
 echo "Iniciando aplicacion"
