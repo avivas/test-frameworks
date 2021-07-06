@@ -75,7 +75,8 @@ function install_docker {
     ca-certificates \
     curl \
     gnupg \
-    lsb-release
+    lsb-release \
+    -y
 
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
@@ -84,7 +85,7 @@ function install_docker {
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
   sudo apt-get update
-  sudo apt-get install docker-ce docker-ce-cli containerd.io
+  sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 }
 
 #-> Install tools
